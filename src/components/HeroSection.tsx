@@ -25,10 +25,8 @@ const HeroSection = () => {
 
           {/* Hero Content */}
           <div className={`space-y-8 ${isVisible ? 'animate-slide-up animation-delay-200' : 'opacity-0'}`}>
-            <h1 className="hero-title">
-              PR Strategist •<br />
-              Influencer Marketing Expert •<br />
-              Content Creator
+            <h1 className="text-xl font-normal text-portfolio-white mb-6">
+              award-winning digital marketing strategist
             </h1>
             
             <div className="space-y-6 body-text">

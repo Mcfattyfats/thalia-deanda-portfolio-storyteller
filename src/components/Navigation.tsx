@@ -25,8 +25,11 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-portfolio-black/90 backdrop-blur-sm border-b border-portfolio-gray/20">
       <div className="container mx-auto px-container py-4">
         <div className="flex items-center justify-between">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-12">
+          {/* Logo/Brand Space - Empty for now */}
+          <div className="flex-1"></div>
+
+          {/* Desktop Navigation & Social Links */}
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -38,28 +41,26 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center space-x-6">
-            <a
-              href="https://instagram.com/thalia_deanda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
-              aria-label="Instagram"
-            >
-              <Instagram size={20} />
-            </a>
-            <a
-              href="https://linkedin.com/in/thalia-de-anda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
+            <div className="flex items-center space-x-4 ml-6">
+              <a
+                href="https://instagram.com/thalia_deanda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://linkedin.com/in/thalia-de-anda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

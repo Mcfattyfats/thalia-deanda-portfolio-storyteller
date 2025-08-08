@@ -22,7 +22,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-portfolio-black/90 backdrop-blur-sm border-b border-portfolio-gray/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-portfolio-black/90 backdrop-blur-sm">
       <div className="container mx-auto px-container py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Brand Space - Empty for now */}

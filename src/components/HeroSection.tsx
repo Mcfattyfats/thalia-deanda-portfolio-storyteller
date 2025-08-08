@@ -9,7 +9,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-section px-8">
+    <section className="min-h-screen flex items-center justify-center pt-32 pb-section px-8">
       <div className="container mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Hero Image */}

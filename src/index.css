@@ -47,21 +47,20 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
+  /* Hide scrollbar globally */
   ::-webkit-scrollbar {
-    width: 8px;
+    display: none;
   }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-portfolio-black;
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-portfolio-gray rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-portfolio-accent;
+  
+  /* Specific hide for hero container */
+  .hero-container::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -106,5 +105,24 @@
   
   .animation-delay-600 {
     animation-delay: 600ms;
+  }
+}
+
+/* Navigation animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

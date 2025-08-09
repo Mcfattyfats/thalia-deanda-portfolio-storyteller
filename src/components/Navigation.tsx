@@ -6,7 +6,18 @@ import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
   const location = useLocation();
+  
+  const openMenu = () => {
+    setIsMenuVisible(true);
+    setTimeout(() => setIsMenuOpen(true), 10);
+  };
+  
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setTimeout(() => setIsMenuVisible(false), 300);
+  };
 
   const navItems = [
     { label: 'About', href: '/' },
@@ -22,78 +33,124 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-portfolio-black/90 backdrop-blur-sm">
-      <div className="container mx-auto px-container py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo/Brand Space - Empty for now */}
-          <div className="flex-1"></div>
-
-          {/* Desktop Navigation & Social Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                className={`nav-link ${
-                  isActive(item.href) ? 'text-portfolio-white' : ''
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="flex items-center space-x-4 ml-6">
-              <a
-                href="https://instagram.com/thalia_deanda"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://linkedin.com/in/thalia-de-anda"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-            </div>
+    <nav className="fixed top-6 right-0 md:right-6 z-50">
+      <div className="px-4 md:px-6 py-3 rounded-full">
+        {/* Desktop Navigation & Social Links */}
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              to={item.href}
+              className={`nav-link ${
+                isActive(item.href) ? 'text-portfolio-white' : ''
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="flex items-center space-x-4 ml-2">
+            <a
+              href="https://instagram.com/thalia_deanda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+              aria-label="Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+            <a
+              href="https://linkedin.com/in/thalia-de-anda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={20} />
+            </a>
           </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-portfolio-white hover:bg-portfolio-gray/20"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-6 pb-4 border-t border-portfolio-gray/20 pt-4">
-            <div className="flex flex-col space-y-4">
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden text-portfolio-white hover:bg-portfolio-gray/20"
+          onClick={openMenu}
+        >
+          <Menu size={24} />
+        </Button>
+      </div>
+
+      {/* Mobile Side Panel */}
+      {isMenuVisible && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 backdrop-blur-xl md:hidden transition-opacity duration-300 ease-out"
+            onClick={closeMenu}
+            style={{ 
+              zIndex: 40,
+              opacity: isMenuOpen ? 1 : 0
+            }}
+          />
+          
+          {/* Side Panel */}
+          <div 
+            className="fixed top-0 right-0 h-full w-64 backdrop-blur-2xl md:hidden"
+            style={{ 
+              zIndex: 50,
+              transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
+              transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-6 right-4 text-portfolio-white"
+              onClick={closeMenu}
+            >
+              <X size={24} />
+            </button>
+            
+            {/* Menu Items */}
+            <div className="flex flex-col items-center justify-center h-full space-y-6">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`nav-link text-lg ${
+                  className={`nav-link text-xl ${
                     isActive(item.href) ? 'text-portfolio-white' : ''
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   {item.label}
                 </Link>
               ))}
+              
+              {/* Social Links */}
+              <div className="flex items-center space-x-6 mt-8">
+                <a
+                  href="https://instagram.com/thalia_deanda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={24} />
+                </a>
+                <a
+                  href="https://linkedin.com/in/thalia-de-anda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-portfolio-white hover:text-portfolio-accent transition-colors duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={24} />
+                </a>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </nav>
   );
 };
